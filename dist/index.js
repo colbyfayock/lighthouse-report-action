@@ -54,9 +54,9 @@ module.exports = require("os");
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
-const { performLighthouseAudit } = __webpack_require__(119);
+const { performLighthouseAudit } = __webpack_require__(359);
 
-(async function () {
+async function run() {
   try {
     const url = core.getInput('url');
 
@@ -68,15 +68,91 @@ const { performLighthouseAudit } = __webpack_require__(119);
   } catch (error) {
     core.setFailed(error.message);
   }
-})();
+}
+
+run();
 
 /***/ }),
 
-/***/ 119:
+/***/ 129:
 /***/ (function(module) {
 
-module.exports = eval("require")("./lib/lighthouse");
+module.exports = require("child_process");
 
+/***/ }),
+
+/***/ 359:
+/***/ (function(module, __unusedexports, __webpack_require__) {
+
+const { exec } = __webpack_require__(129);
+
+async function performLighthouseAudit(url) {
+
+  const timestamp = Date.now();
+  const reportId = `lighthouse-${timestamp}`;
+  const command = buildLighthouseCommand({
+    url,
+    chromeFlags: '--headless',
+    outputType: 'json',
+    outputPath: `./reports/${reportId}.json`
+  });
+
+  try {
+    await promiseToExec(command);
+  } catch(e) {
+    console.log(`Failed to execute lighthouse: ${e.message}`);
+    throw e;
+  }
+
+  return {
+    reportId
+  }
+
+}
+
+module.exports.performLighthouseAudit = performLighthouseAudit;
+
+/**
+ * buildLighthouseCommand
+ */
+
+function buildLighthouseCommand({ url, chromeFlags, outputType, outputPath }) {
+  const args = [];
+
+  if ( chromeFlags ) {
+    args.push(`--chrome-flags="${chromeFlags}"`);
+  }
+
+  if ( url ) {
+    args.push(url);
+  }
+
+  if ( outputType ) {
+    args.push(`--output="${outputType}"`);
+  }
+
+  if ( outputType ) {
+    args.push(`--output-path="${outputPath}"`);
+  }
+
+  return `lighthouse ${args.join(' ')}`;
+}
+
+/**
+ * promiseToExec
+ */
+
+function promiseToExec(command) {
+  return new Promise((resolve, reject) => {
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      resolve(stdout, stderr);
+    });
+  })
+}
 
 /***/ }),
 
