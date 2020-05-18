@@ -5,7 +5,7 @@ async function run() {
   try {
     const url = core.getInput('url');
 
-    console.log(`Performing audit on ${ur}`);
+    console.log(`Performing audit on ${url}`);
 
     const { reportId } = await performLighthouseAudit(url);
 
