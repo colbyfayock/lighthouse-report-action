@@ -2,7 +2,7 @@
   "name": "lighthouse-report-action",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "lighthouse": "node ./scripts/lighthouse.js",
     "package": "ncc build index.js -o dist",
