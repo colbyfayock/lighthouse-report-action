@@ -88,6 +88,12 @@ const { exec } = __webpack_require__(129);
 
 async function performLighthouseAudit(url) {
 
+  try {
+    await promiseToExec('npm install -g lighthouse');
+  } catch(e) {
+    console.log('e', e)
+  }
+
   const timestamp = Date.now();
   const reportId = `lighthouse-${timestamp}`;
   const command = buildLighthouseCommand({
