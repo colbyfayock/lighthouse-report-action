@@ -1,0 +1,12 @@
+name: 'Lighthouse Report'
+description: 'Generate a new audit report with Lighthouse'
+
+inputs:
+  url:
+    description: 'URL to audit'
+    required: true
+    default: 'https://www.google.com'
+
+runs:
+  using: 'node12'
+  main: 'index.js'
