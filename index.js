@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const { performLighthouseAudit } = require('./lib/lighthouse');
 
-(async function () {
+async function run() {
   try {
     const url = core.getInput('url');
 
@@ -13,4 +13,6 @@ const { performLighthouseAudit } = require('./lib/lighthouse');
   } catch (error) {
     core.setFailed(error.message);
   }
-})();
+}
+
+run();
