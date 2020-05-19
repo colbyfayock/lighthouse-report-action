@@ -10,7 +10,7 @@ inputs:
   outputDirectory:
     description: 'Directory to add reports'
     required: true
-    default: 'reports'
+    default: './reports'
 
 runs:
   using: 'node12'
