@@ -34,7 +34,7 @@ module.exports =
 /******/ 	// the startup function
 /******/ 	function startup() {
 /******/ 		// Load entry module and return exports
-/******/ 		return __webpack_require__(104);
+/******/ 		return __webpack_require__(928);
 /******/ 	};
 /******/
 /******/ 	// run startup
@@ -50,30 +50,6 @@ module.exports = require("os");
 
 /***/ }),
 
-/***/ 104:
-/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
-
-const core = __webpack_require__(470);
-const { performLighthouseAudit } = __webpack_require__(359);
-
-async function run() {
-  try {
-    const url = core.getInput('url');
-
-    console.log(`Performing audit on ${url}`);
-
-    const { reportId } = await performLighthouseAudit(url);
-
-    core.setOutput('reportId', reportId);
-  } catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run();
-
-/***/ }),
-
 /***/ 129:
 /***/ (function(module) {
 
@@ -81,19 +57,16 @@ module.exports = require("child_process");
 
 /***/ }),
 
-/***/ 359:
+/***/ 230:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
 const { exec } = __webpack_require__(129);
 
+/**
+ * buildLighthouseCommand
+ */
+
 async function performLighthouseAudit(url) {
-
-  try {
-    await promiseToExec('npm install -g lighthouse');
-  } catch(e) {
-    console.log('e', e)
-  }
-
   const timestamp = Date.now();
   const reportId = `lighthouse-${timestamp}`;
   const command = buildLighthouseCommand({
@@ -494,6 +467,30 @@ exports.getState = getState;
 /***/ (function(module) {
 
 module.exports = require("path");
+
+/***/ }),
+
+/***/ 928:
+/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
+
+const core = __webpack_require__(470);
+const { performLighthouseAudit } = __webpack_require__(230);
+
+async function run() {
+  try {
+    const url = core.getInput('url');
+
+    console.log(`Performing audit on ${url}`);
+
+    const { reportId } = await performLighthouseAudit(url);
+
+    core.setOutput('reportId', reportId);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+}
+
+run();
 
 /***/ })
 

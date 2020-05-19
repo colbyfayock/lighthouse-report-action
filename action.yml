@@ -1,5 +1,6 @@
 name: 'Lighthouse Report'
 description: 'Generate a new audit report with Lighthouse'
+author: 'Colby Fayock'
 
 inputs:
   url:
@@ -8,5 +9,7 @@ inputs:
     default: 'https://www.google.com'
 
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.url }}
