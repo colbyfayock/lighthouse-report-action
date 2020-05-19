@@ -62,7 +62,7 @@ module.exports = require("child_process");
 
 const { exec } = __webpack_require__(129);
 
-const LIGHTHOUSE_EXECUTABLE = './lighthouse/lighthouse-cli/index.js';
+const LIGHTHOUSE_EXECUTABLE = './dist/lighthouse/lighthouse-cli/index.js';
 
 /**
  * buildLighthouseCommand
