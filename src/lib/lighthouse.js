@@ -6,14 +6,14 @@ const LIGHTHOUSE_EXECUTABLE = 'node_modules/lighthouse/lighthouse-cli/index.js';
  * buildLighthouseCommand
  */
 
-async function performLighthouseAudit(url) {
+async function performLighthouseAudit({ url, outputDirectory } = {}) {
   const timestamp = Date.now();
   const reportId = `lighthouse-${timestamp}`;
   const command = buildLighthouseCommand({
     url,
     chromeFlags: '--headless',
     outputType: 'json',
-    outputPath: `./reports/${reportId}.json`
+    outputPath: `./${outputDirectory}/${reportId}.json`
   });
 
   try {

@@ -68,14 +68,14 @@ const LIGHTHOUSE_EXECUTABLE = 'node_modules/lighthouse/lighthouse-cli/index.js';
  * buildLighthouseCommand
  */
 
-async function performLighthouseAudit(url) {
+async function performLighthouseAudit({ url, outputDirectory } = {}) {
   const timestamp = Date.now();
   const reportId = `lighthouse-${timestamp}`;
   const command = buildLighthouseCommand({
     url,
     chromeFlags: '--headless',
     outputType: 'json',
-    outputPath: `./reports/${reportId}.json`
+    outputPath: `./${outputDirectory}/${reportId}.json`
   });
 
   try {
@@ -472,19 +472,35 @@ module.exports = require("path");
 
 /***/ }),
 
+/***/ 747:
+/***/ (function(module) {
+
+module.exports = require("fs");
+
+/***/ }),
+
 /***/ 928:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
+const fs = __webpack_require__(747);
 const { performLighthouseAudit } = __webpack_require__(230);
 
 async function run() {
   try {
     const url = core.getInput('url');
+    const outputDirectory = core.getInput('outputDirectory');
 
     console.log(`Performing audit on ${url}`);
 
-    const { reportId } = await performLighthouseAudit(url);
+    if ( !fs.existsSync(outputDirectory) ){
+      fs.mkdirSync(outputDirectory);
+    }
+
+    const { reportId } = await performLighthouseAudit({
+      url,
+      outputDirectory
+    });
 
     core.setOutput('reportId', reportId);
   } catch (error) {

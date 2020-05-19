@@ -7,6 +7,10 @@ inputs:
     description: 'URL to audit'
     required: true
     default: 'https://www.google.com'
+  outputDirectory:
+    description: 'Directory to add reports'
+    required: true
+    default: 'reports'
 
 runs:
   using: 'node12'
