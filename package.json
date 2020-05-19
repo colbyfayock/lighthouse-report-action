@@ -7,7 +7,7 @@
     "lighthouse": "node ./scripts/lighthouse.js",
     "build": "yarn build:action && yarn build:lighthouse",
     "build:action": "ncc build src/action.js -o dist",
-    "build:lighthouse": "cp -r node_modules/lighthouse dist/lighthouse",
+    "build:lighthouse": "cp -r node_modules dist/node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
