@@ -1,5 +1,7 @@
 const { exec } = require('child_process');
 
+const LIGHTHOUSE_EXECUTABLE = 'node_modules/lighthouse/lighthouse-cli/index.js';
+
 /**
  * buildLighthouseCommand
  */
@@ -52,7 +54,7 @@ function buildLighthouseCommand({ url, chromeFlags, outputType, outputPath }) {
     args.push(`--output-path="${outputPath}"`);
   }
 
-  return `lighthouse ${args.join(' ')}`;
+  return `${LIGHTHOUSE_EXECUTABLE} ${args.join(' ')}`;
 }
 
 /**

@@ -62,6 +62,8 @@ module.exports = require("child_process");
 
 const { exec } = __webpack_require__(129);
 
+const LIGHTHOUSE_EXECUTABLE = 'node_modules/lighthouse/lighthouse-cli/index.js';
+
 /**
  * buildLighthouseCommand
  */
@@ -114,7 +116,7 @@ function buildLighthouseCommand({ url, chromeFlags, outputType, outputPath }) {
     args.push(`--output-path="${outputPath}"`);
   }
 
-  return `lighthouse ${args.join(' ')}`;
+  return `${LIGHTHOUSE_EXECUTABLE} ${args.join(' ')}`;
 }
 
 /**

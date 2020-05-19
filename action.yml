@@ -9,7 +9,5 @@ inputs:
     default: 'https://www.google.com'
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.url }}
+  using: 'node12'
+  main: 'dist/index.js'
