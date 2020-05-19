@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 
-const LIGHTHOUSE_EXECUTABLE = './lighthouse/lighthouse-cli/index.js';
+const LIGHTHOUSE_EXECUTABLE = './dist/lighthouse/lighthouse-cli/index.js';
 
 /**
  * buildLighthouseCommand
