@@ -1,6 +1,6 @@
 {
   "name": "pagespeed-insights-report-action",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generate PageSpeed Insights reports straight to Github",
   "main": "dist/index.js",
   "scripts": {
