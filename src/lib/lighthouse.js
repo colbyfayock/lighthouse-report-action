@@ -1,6 +1,7 @@
 const { exec } = require('child_process');
+const fs = require('fs');
+const psi = require('psi');
 
-const LIGHTHOUSE_EXECUTABLE = './dist/node_modules/lighthouse/lighthouse-cli/index.js';
 
 /**
  * buildLighthouseCommand
@@ -9,15 +10,15 @@ const LIGHTHOUSE_EXECUTABLE = './dist/node_modules/lighthouse/lighthouse-cli/ind
 async function performLighthouseAudit({ url, outputDirectory } = {}) {
   const timestamp = Date.now();
   const reportId = `lighthouse-${timestamp}`;
-  const command = buildLighthouseCommand({
-    url,
-    chromeFlags: '--headless',
-    outputType: 'json',
-    outputPath: `./${outputDirectory}/${reportId}.json`
-  });
+  const outputPath = `./${outputDirectory}/${reportId}.json`
 
   try {
-    await promiseToExec(command);
+    const { data } = await psi(url);
+
+    await promiseToCreateFile({
+      path: outputPath,
+      content: JSON.stringify(data)
+    });
   } catch(e) {
     console.log(`Failed to execute lighthouse: ${e.message}`);
     throw e;
@@ -26,7 +27,6 @@ async function performLighthouseAudit({ url, outputDirectory } = {}) {
   return {
     reportId
   }
-
 }
 
 module.exports.performLighthouseAudit = performLighthouseAudit;
@@ -71,4 +71,20 @@ function promiseToExec(command) {
       resolve(stdout, stderr);
     });
   })
+}
+
+/**
+ * promiseToCreateFile
+ */
+
+function promiseToCreateFile({ path, content }) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path, content, function(error) {
+      if ( error ) {
+        reject(error);
+        return;
+      }
+      resolve();
+    })
+  });
 }

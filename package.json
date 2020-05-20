@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lighthouse": "node ./scripts/lighthouse.js",
-    "build": "yarn build:action && yarn build:lighthouse",
+    "build": "yarn build:action",
     "build:action": "ncc build src/action.js -o dist",
-    "build:lighthouse": "cp -r node_modules dist/node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,9 +21,8 @@
   "homepage": "https://github.com/colbyfayock/lighthouse-report-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.4",
-    "chrome-launcher": "^0.13.2",
     "fs": "^0.0.1-security",
-    "lighthouse": "^6.0.0"
+    "psi": "^4.0.1"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.1"
