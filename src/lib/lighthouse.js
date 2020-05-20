@@ -17,7 +17,7 @@ async function performLighthouseAudit({ url, outputDirectory } = {}) {
 
     await promiseToCreateFile({
       path: outputPath,
-      content: JSON.stringify(data)
+      content: JSON.stringify(data, null, 2)
     });
   } catch(e) {
     console.log(`Failed to execute lighthouse: ${e.message}`);
