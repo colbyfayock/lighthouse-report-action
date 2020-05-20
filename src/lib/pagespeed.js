@@ -1,5 +1,6 @@
-const fs = require('fs');
 const psi = require('psi');
+
+const { promiseToCreateFile } = require('./fs');
 
 
 /**
@@ -29,19 +30,3 @@ async function performLighthouseAudit({ url, outputDirectory } = {}) {
 }
 
 module.exports.performLighthouseAudit = performLighthouseAudit;
-
-/**
- * promiseToCreateFile
- */
-
-function promiseToCreateFile({ path, content }) {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(path, content, function(error) {
-      if ( error ) {
-        reject(error);
-        return;
-      }
-      resolve();
-    })
-  });
-}
