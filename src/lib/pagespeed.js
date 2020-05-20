@@ -13,10 +13,14 @@ async function performPageSpeedAudit({ url, outputDirectory } = {}) {
 
   try {
     const { data } = await psi(url);
+    const report = {
+      id: reportId,
+      data
+    }
 
     await promiseToCreateFile({
       path: outputPath,
-      content: JSON.stringify(data, null, 2)
+      content: JSON.stringify(report, null, 2)
     });
   } catch(e) {
     console.log(`Failed to execute PageSpeed audit: ${e.message}`);
