@@ -7,7 +7,7 @@
     "build": "yarn build:action",
     "build:action": "ncc build src/action.js -o dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bump": "yarn bump:version $1 && yarn bump:tag",
+    "bump": "func() { yarn bump:version \"$1\" && yarn bump:tag; }; func",
     "bump:version": "npm version",
     "bump:tag": "VERSION=$(node -pe \"require('./package.json').version\"); git tag \"v$VERSION\""
   },
