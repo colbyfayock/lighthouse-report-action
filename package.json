@@ -1,8 +1,8 @@
 {
-  "name": "lighthouse-report-action",
+  "name": "pagespeed-insights-report-action",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Generate PageSpeed Insights reports straight to Github",
+  "main": "dist/index.js",
   "scripts": {
     "build": "yarn build:action",
     "build:action": "ncc build src/action.js -o dist",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/colbyfayock/lighthouse-report-action.git"
+    "url": "git+https://github.com/colbyfayock/pagespeed-insights-report-action.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/colbyfayock/lighthouse-report-action/issues"
+    "url": "https://github.com/colbyfayock/pagespeed-insights-report-action/issues"
   },
-  "homepage": "https://github.com/colbyfayock/lighthouse-report-action#readme",
+  "homepage": "https://github.com/colbyfayock/pagespeed-insights-report-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.4",
     "fs": "^0.0.1-security",
