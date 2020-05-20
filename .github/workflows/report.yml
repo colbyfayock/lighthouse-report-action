@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Lighthouse Audit
+    - name: PageSpeed Insights Audit
       uses: ./
       with:
         url: http://colbyfayock.com

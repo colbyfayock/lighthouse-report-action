@@ -1,1 +1,1 @@
-# lighthouse-report-action
+# PageSpeed Insights Report Action

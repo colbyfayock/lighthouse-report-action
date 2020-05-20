@@ -2,14 +2,13 @@ const psi = require('psi');
 
 const { promiseToCreateFile } = require('./fs');
 
-
 /**
- * buildLighthouseCommand
+ * performPageSpeedAudit
  */
 
-async function performLighthouseAudit({ url, outputDirectory } = {}) {
+async function performPageSpeedAudit({ url, outputDirectory } = {}) {
   const timestamp = Date.now();
-  const reportId = `lighthouse-${timestamp}`;
+  const reportId = `pagespeed-${timestamp}`;
   const outputPath = `./${outputDirectory}/${reportId}.json`
 
   try {
@@ -20,7 +19,7 @@ async function performLighthouseAudit({ url, outputDirectory } = {}) {
       content: JSON.stringify(data, null, 2)
     });
   } catch(e) {
-    console.log(`Failed to execute lighthouse: ${e.message}`);
+    console.log(`Failed to execute PageSpeed audit: ${e.message}`);
     throw e;
   }
 
@@ -29,4 +28,4 @@ async function performLighthouseAudit({ url, outputDirectory } = {}) {
   }
 }
 
-module.exports.performLighthouseAudit = performLighthouseAudit;
+module.exports.performPageSpeedAudit = performPageSpeedAudit;

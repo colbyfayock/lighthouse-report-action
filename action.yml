@@ -1,6 +1,6 @@
-name: 'Lighthouse Report'
-description: 'Generate a new audit report with Lighthouse'
-author: 'Colby Fayock'
+name: 'PageSpeed Insight Report Action'
+description: 'Generate PageSpeed Insights reports straight to Github'
+author: 'Colby Fayock <hello@colbyfayock.com>'
 
 inputs:
   url:

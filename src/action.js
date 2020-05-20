@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const fs = require('fs');
-const { performLighthouseAudit } = require('./lib/lighthouse');
+const { performPageSpeedAudit } = require('./lib/pagespeed');
 
 async function run() {
   try {
@@ -13,7 +13,7 @@ async function run() {
       fs.mkdirSync(outputDirectory);
     }
 
-    const { reportId } = await performLighthouseAudit({
+    const { reportId } = await performPageSpeedAudit({
       url,
       outputDirectory
     });
