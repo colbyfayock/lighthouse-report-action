@@ -12,18 +12,20 @@ async function performPageSpeedAudit({ url, outputDirectory } = {}) {
   const outputPath = `./${outputDirectory}/${reportId}.json`
 
   try {
+    console.log('Running PageSpeed Insights...');
     const { data } = await psi(url);
+    console.log('Finished PageSpeed Insights...');
+
     const report = {
       id: reportId,
       data
     }
-    
-    const reportPretty = JSON.stringify(report, null, 2);
-    
-    console.log(`Begin report ${reportId}...`);
-    console.log(reportPretty);
-    console.log(`End report ${reportId}...`);
 
+    const reportPretty = JSON.stringify(report, null, 2);
+
+    console.log(reportPretty);
+
+    console.log(`Creating report file ${outputPath}...`);
     await promiseToCreateFile({
       path: outputPath,
       content: reportPretty

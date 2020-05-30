@@ -8,16 +8,20 @@ async function run() {
     const outputDirectory = core.getInput('outputDirectory');
 
     console.log(`Performing audit on ${url}`);
+    console.log(`Checking if ${outputDirectory} exists...`);
 
     if ( !fs.existsSync(outputDirectory) ){
+      console.log(`Creating ${outputDirectory}`);
       fs.mkdirSync(outputDirectory);
     }
+
+    console.log('Starting audit...');
 
     const { reportId } = await performPageSpeedAudit({
       url,
       outputDirectory
     });
-    
+
     console.log(`Report is available in ${outputDirectory}`);
     console.log(`Completed audit ${reportId} on ${url}`);
 
