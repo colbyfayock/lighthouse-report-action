@@ -17,6 +17,9 @@ async function run() {
       url,
       outputDirectory
     });
+    
+    console.log(`Report is available in ${outputDirectory}`);
+    console.log(`Completed audit ${reportId} on ${url}`);
 
     core.setOutput('reportId', reportId);
   } catch (error) {
