@@ -17,10 +17,16 @@ async function performPageSpeedAudit({ url, outputDirectory } = {}) {
       id: reportId,
       data
     }
+    
+    const reportPretty = JSON.stringify(report, null, 2);
+    
+    console.log(`Begin report ${reportId}...`);
+    console.log(reportPretty);
+    console.log(`End report ${reportId}...`);
 
     await promiseToCreateFile({
       path: outputPath,
-      content: JSON.stringify(report, null, 2)
+      content: reportPretty
     });
   } catch(e) {
     console.log(`Failed to execute PageSpeed audit: ${e.message}`);
