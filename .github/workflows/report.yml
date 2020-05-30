@@ -12,7 +12,7 @@ jobs:
     - name: PageSpeed Insights Audit
       uses: colbyfayock/pagespeed-insights-report-action@v1.0.4
       with:
-        url: http://colbyfayock.com
+        url: https://www.colbyfayock.com
 
     - uses: mikeal/publish-to-github-action@master
       env:
