@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/colbyfayock/pagespeed-insights-report-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.4",
+    "@actions/core": "^1.2.6",
     "fs": "^0.0.1-security",
     "psi": "^4.0.1"
   },
